@@ -132,14 +132,18 @@ Aucune donnée n'est encore enregistrée.
 <label for="metier">Métier</label>
 <select id="metier" required>
 <option value="">Choisir un métier</option>
+<option value="Autre">Autre (préciser)</option>
 </select>
-
+<label for="autreMetier">Métier non trouvé ?</label>
+<input type="text" id="autreMetier" placeholder="Écrivez votre métier ici">
 <label for="localite">Localité</label>
 <input id="localite" required>
-
+<label for="photo">Photo de profil</label>
+<input type="file" id="photo" accept="image/*">
 <label for="telephone">Téléphone</label>
 <input id="telephone" type="tel">
-
+<label for="realisations">Photos de vos réalisations</label>
+<input type="file" id="realisations" accept="image/*" multiple>
 <label for="description">Présentation</label>
 <textarea id="description" rows="4"></textarea>
 
