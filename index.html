@@ -1,57 +1,218 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ARN-Annuaire | Les fils de Niagara</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f9f8;
-      color: #14251d;
-    }
-    header {
-      background: white;
-      padding: 20px;
-      color: #14633d;
-      font-weight: bold;
-      font-size: 22px;
-    }
-    .hero {
-      background: #145735;
-      color: white;
-      padding: 70px 25px;
-      text-align: center;
-    }
-    .hero h1 { font-size: 36px; }
-    .hero span { color: #80edab; }
-    main { padding: 30px 20px; }
-    .card {
-      background: white;
-      border: 1px solid #e1e7e3;
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 15px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARN-Annuaire | Les fils de Niagara</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f9f8;
+  color: #14251d;
+}
+header {
+  background: white;
+  padding: 20px;
+  color: #14633d;
+  font-size: 22px;
+  font-weight: bold;
+}
+nav { margin-top: 12px; }
+nav a {
+  color: #14633d;
+  margin-right: 18px;
+  font-size: 15px;
+}
+.hero {
+  background: #145735;
+  color: white;
+  padding: 65px 20px;
+  text-align: center;
+}
+.hero h1 { font-size: 34px; }
+.hero span { color: #80edab; }
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 25px 20px;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 13px;
+  margin: 8px 0;
+  border: 1px solid #ccd9d0;
+  border-radius: 8px;
+  font: inherit;
+}
+button {
+  background: #14633d;
+  color: white;
+  border: none;
+  padding: 13px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit, minmax(180px, 1fr)
+  );
+  gap: 15px;
+}
+.card {
+  background: white;
+  border: 1px solid #e1e7e3;
+  border-radius: 12px;
+  padding: 20px;
+}
+.formulaire {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 35px;
+}
+footer {
+  background: #145735;
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+</style>
 </head>
 <body>
-  <header>ARN — Les fils de Niagara</header>
-  <section class="hero">
-    <h1>Trouvez un fils de Niagara<br>
-      <span>pour chaque métier.</span>
-    </h1>
-    <p>Plombiers, électriciens, commerçants...</p>
-  </section>
-  <main>
-    <h2>Catégories professionnelles</h2>
-    <div class="card">Plomberie</div>
-    <div class="card">Électricité</div>
-    <div class="card">Menuiserie</div>
-    <div class="card">Commerce</div>
-    <div class="card">Couture</div>
-    <div class="card">Transport</div>
-  </main>
+
+<header>
+ARN — Les fils de Niagara
+<nav>
+<a href="#metiers">Métiers</a>
+<a href="#inscription">S'inscrire</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>
+Trouvez un fils de Niagara<br>
+<span>pour chaque métier.</span>
+</h1>
+<p>
+L'annuaire des professionnels et artisans
+de Niagara, Guinée.
+</p>
+</section>
+
+<main>
+<section id="metiers">
+<h2>Catégories professionnelles</h2>
+<p>Recherchez un métier dans notre annuaire.</p>
+
+<input
+  id="recherche"
+  type="search"
+  placeholder="Rechercher un métier..."
+  oninput="rechercher()"
+>
+
+<div class="grid" id="resultats"></div>
+<p id="aucun" hidden>Aucun métier trouvé.</p>
+</section>
+
+<section class="formulaire" id="inscription">
+<h2>Inscription des professionnels</h2>
+<p>
+Formulaire de démonstration.
+Aucune donnée n'est encore enregistrée.
+</p>
+
+<form id="formulaire">
+<label for="nom">Nom complet</label>
+<input id="nom" required>
+
+<label for="metier">Métier</label>
+<select id="metier" required>
+<option value="">Choisir un métier</option>
+</select>
+
+<label for="localite">Localité</label>
+<input id="localite" required>
+
+<label for="telephone">Téléphone</label>
+<input id="telephone" type="tel">
+
+<label for="description">Présentation</label>
+<textarea id="description" rows="4"></textarea>
+
+<button type="submit">
+Tester mon inscription
+</button>
+</form>
+<p id="message" role="status"></p>
+</section>
+</main>
+
+<footer>
+ARN-Annuaire<br>
+Association des Ressortissants de Niagara
+</footer>
+
+<script>
+const metiers = [
+  "Plomberie",
+  "Électricité",
+  "Menuiserie",
+  "Commerce",
+  "Couture",
+  "Transport",
+  "Maçonnerie",
+  "Mécanique",
+  "Agriculture",
+  "Informatique",
+  "Enseignement",
+  "Santé"
+];
+
+const resultats = document.getElementById("resultats");
+const select = document.getElementById("metier");
+
+metiers.forEach(nom => {
+  const option = document.createElement("option");
+  option.value = nom;
+  option.textContent = nom;
+  select.appendChild(option);
+});
+
+function rechercher() {
+  const recherche = document
+    .getElementById("recherche")
+    .value.toLowerCase();
+
+  resultats.replaceChildren();
+  let total = 0;
+
+  metiers.forEach(nom => {
+    if (nom.toLowerCase().includes(recherche)) {
+      const carte = document.createElement("div");
+      carte.className = "card";
+      carte.textContent = nom;
+      resultats.appendChild(carte);
+      total++;
+    }
+  });
+
+  document.getElementById("aucun").hidden =
+    total !== 0;
+}
+
+document.getElementById("formulaire")
+  .addEventListener("submit", function(e) {
+    e.preventDefault();
+    document.getElementById("message").textContent =
+      "Formulaire testé avec succès. " +
+      "Aucune inscription n'a été enregistrée.";
+  });
+
+rechercher();
+</script>
 </body>
 </html>
