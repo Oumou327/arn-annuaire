@@ -1,222 +1,723 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#12643d">
 <title>ARN-Annuaire | Les fils de Niagara</title>
 <style>
-* { box-sizing: border-box; }
+:root {
+  --green:#12643d;
+  --dark:#093d29;
+  --pale:#eaf6ef;
+  --bg:#f6f8f7;
+  --line:#dce7df;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f7f9f8;
-  color: #14251d;
+  margin:0;
+  font-family:Arial,sans-serif;
+  color:#1c3027;
+  background:var(--bg);
+  line-height:1.6;
 }
+button,input,select,textarea {font:inherit}
+button {cursor:pointer}
+a {text-decoration:none;color:inherit}
+[hidden] {display:none!important}
+.wrap {max-width:1100px;margin:auto;padding:0 20px}
 header {
-  background: white;
-  padding: 20px;
-  color: #14633d;
-  font-size: 22px;
-  font-weight: bold;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:5;
 }
-nav { margin-top: 12px; }
-nav a {
-  color: #14633d;
-  margin-right: 18px;
-  font-size: 15px;
+.nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  padding-top:12px;
+  padding-bottom:12px;
+  flex-wrap:wrap;
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--dark);
+  font-weight:bold;
+}
+.logo {
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:var(--green);
+  color:#fff;
+  display:grid;
+  place-items:center;
+}
+.brand small {
+  display:block;
+  font-size:12px;
+  color:#68776d;
+  font-weight:normal;
+}
+nav {
+  display:flex;
+  gap:16px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+nav a {font-size:14px}
+.btn {
+  border:1px solid var(--green);
+  background:var(--green);
+  color:#fff;
+  border-radius:10px;
+  padding:12px 18px;
+  font-weight:bold;
+  display:inline-block;
+  text-align:center;
+}
+.btn:hover {background:var(--dark)}
+.secondary {
+  background:#fff;
+  color:var(--green);
+  border-color:var(--line);
 }
 .hero {
-  background: #145735;
-  color: white;
-  padding: 65px 20px;
-  text-align: center;
+  background:linear-gradient(135deg,#093d29,#167a4a);
+  color:#fff;
+  text-align:center;
+  padding:75px 20px;
 }
-.hero h1 { font-size: 34px; }
-.hero span { color: #80edab; }
-main {
-  max-width: 1000px;
-  margin: auto;
-  padding: 25px 20px;
+.hero h1 {
+  font-size:clamp(30px,5vw,52px);
+  line-height:1.2;
+  max-width:750px;
+  margin:14px auto;
 }
-input, select, textarea {
-  width: 100%;
-  padding: 13px;
-  margin: 8px 0;
-  border: 1px solid #ccd9d0;
-  border-radius: 8px;
-  font: inherit;
+.hero h1 span {color:#a6f0bd}
+.hero p {max-width:650px;margin:0 auto 25px}
+.hero .btn {
+  background:#fff;
+  color:var(--dark);
+  border-color:#fff;
 }
-button {
-  background: #14633d;
-  color: white;
-  border: none;
-  padding: 13px 22px;
-  border-radius: 8px;
-  cursor: pointer;
+.hero .ghost {
+  background:transparent;
+  color:#fff;
+  border-color:#b9d6c6;
 }
+.actions {
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.section {padding:55px 0;scroll-margin-top:100px}
+.heading {text-align:center;margin-bottom:26px}
+.heading h2 {
+  font-size:30px;
+  color:var(--dark);
+  margin:0;
+}
+.heading p {margin:5px 0;color:#65756c}
+.search {
+  padding:18px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  margin-bottom:22px;
+}
+.search input {margin:0}
 .grid {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit, minmax(180px, 1fr)
-  );
-  gap: 15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(155px,1fr));
+  gap:14px;
 }
-.card {
-  background: white;
-  border: 1px solid #e1e7e3;
-  border-radius: 12px;
-  padding: 20px;
+.category {
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:22px 10px;
+  text-align:center;
 }
-.formulaire {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  margin-top: 35px;
+.category:hover {border-color:var(--green)}
+.category span {font-size:30px;display:block}
+.category strong {display:block}
+.category small {color:#65756c}
+.notice {
+  background:var(--pale);
+  border:1px solid #cbe4d3;
+  border-radius:11px;
+  padding:15px;
+  margin:20px 0;
+  color:var(--dark);
 }
+.features {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+.feature {
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:24px;
+}
+.feature h3 {margin:8px 0}
+.feature p {color:#65756c;font-size:14px}
+.registration {
+  max-width:780px;
+  margin:auto;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:30px;
+}
+.steps {
+  display:flex;
+  gap:8px;
+  justify-content:space-between;
+  margin:24px 0;
+}
+.step {
+  flex:1;
+  text-align:center;
+  font-size:12px;
+  color:#65756c;
+}
+.bubble {
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#e9efeb;
+  margin:0 auto 7px;
+  font-weight:bold;
+}
+.step.active .bubble,
+.step.done .bubble {
+  background:var(--green);
+  color:#fff;
+}
+.step.active {font-weight:bold;color:var(--green)}
+.page {display:none}
+.page.active {display:block}
+.page h3 {
+  font-size:23px;
+  color:var(--dark);
+  margin:0;
+}
+.page>p {color:#65756c;margin:0 0 22px}
+.field {margin-bottom:18px}
+.field label {
+  display:block;
+  font-weight:bold;
+  font-size:14px;
+  margin-bottom:6px;
+}
+.field input,
+.field select,
+.field textarea,
+.search input {
+  width:100%;
+  padding:12px;
+  border:1px solid #ccd9d0;
+  border-radius:9px;
+  background:#fff;
+}
+.field small {
+  display:block;
+  color:#65756c;
+  margin-top:5px;
+}
+.two {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.form-actions {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:25px;
+}
+.preview {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+.preview img {
+  width:85px;
+  height:85px;
+  object-fit:cover;
+  border-radius:9px;
+}
+.check {
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
+.check input {width:auto;margin-top:5px}
+.check label {font-weight:normal}
 footer {
-  background: #145735;
-  color: white;
-  padding: 25px;
-  text-align: center;
+  background:var(--dark);
+  color:#fff;
+  text-align:center;
+  padding:32px 20px;
+}
+footer p {color:#cde5d6;font-size:13px}
+@media(max-width:650px) {
+  .nav {justify-content:center}
+  nav {justify-content:center}
+  .hero {padding:55px 15px}
+  .section {padding:35px 0}
+  .features,.two {grid-template-columns:1fr}
+  .registration {padding:18px 14px}
+  .step {font-size:10px}
+  .bubble {width:31px;height:31px}
 }
 </style>
 </head>
 <body>
 
 <header>
-ARN — Les fils de Niagara
-<nav>
-<a href="#metiers">Métiers</a>
-<a href="#inscription">S'inscrire</a>
-</nav>
+  <div class="wrap nav">
+    <a href="#accueil" class="brand">
+      <span class="logo">ARN</span>
+      <span>ARN-Annuaire
+        <small>Les fils de Niagara</small>
+      </span>
+    </a>
+    <nav>
+      <a href="#metiers">Métiers</a>
+      <a href="#fonctionnement">Comment ça marche</a>
+      <a class="btn" href="#inscription">S'inscrire</a>
+    </nav>
+  </div>
 </header>
 
-<section class="hero">
-<h1>
-Trouvez un fils de Niagara<br>
-<span>pour chaque métier.</span>
-</h1>
-<p>
-L'annuaire des professionnels et artisans
-de Niagara, Guinée.
-</p>
+<section class="hero" id="accueil">
+  <div class="wrap">
+    <p>Association des Ressortissants de Niagara</p>
+    <h1>
+      Le savoir-faire de Niagara
+      <span>à portée de main.</span>
+    </h1>
+    <p>
+      Découvrez les talents, artisans, commerçants
+      et professionnels de notre communauté.
+      Ensemble, valorisons nos compétences.
+    </p>
+    <div class="actions">
+      <a href="#metiers" class="btn">Explorer les métiers</a>
+      <a href="#inscription" class="btn ghost">Rejoindre l'annuaire</a>
+    </div>
+  </div>
 </section>
 
 <main>
-<section id="metiers">
-<h2>Catégories professionnelles</h2>
-<p>Recherchez un métier dans notre annuaire.</p>
-
-<input
-  id="recherche"
-  type="search"
-  placeholder="Rechercher un métier..."
-  oninput="rechercher()"
->
-
-<div class="grid" id="resultats"></div>
-<p id="aucun" hidden>Aucun métier trouvé.</p>
+<section class="section" id="metiers">
+  <div class="wrap">
+    <div class="heading">
+      <h2>Découvrez nos métiers</h2>
+      <p>Recherchez une catégorie professionnelle.</p>
+    </div>
+    <div class="search">
+      <input id="recherche" type="search"
+        placeholder="Rechercher un métier..."
+        aria-label="Rechercher un métier">
+    </div>
+    <div class="grid" id="categories"></div>
+    <p id="aucun" class="notice" hidden>
+      Aucun métier trouvé.
+    </p>
+    <div class="notice">
+      Les profils des professionnels approuvés seront
+      consultables ici après l'activation de la base de données.
+    </div>
+  </div>
 </section>
 
-<section class="formulaire" id="inscription">
-<h2>Inscription des professionnels</h2>
-<p>
-Formulaire de démonstration.
-Aucune donnée n'est encore enregistrée.
-</p>
+<section class="section" id="fonctionnement"
+  style="background:#edf4ef">
+  <div class="wrap">
+    <div class="heading">
+      <h2>Comment ça marche ?</h2>
+      <p>Une plateforme simple au service de notre communauté.</p>
+    </div>
+    <div class="features">
+      <article class="feature">
+        <h3>📝 1. Inscrivez-vous</h3>
+        <p>Présentez votre métier, vos services et vos réalisations.</p>
+      </article>
+      <article class="feature">
+        <h3>🛡️ 2. Vérification ARN</h3>
+        <p>Le bureau ARN examine chaque candidature avant publication.</p>
+      </article>
+      <article class="feature">
+        <h3>🤝 3. Faites-vous connaître</h3>
+        <p>Les membres pourront découvrir et contacter les professionnels approuvés.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-<form id="formulaire">
-<label for="nom">Nom complet</label>
-<input id="nom" required>
+<section class="section" id="inscription">
+<div class="wrap">
+  <div class="heading">
+    <h2>Rejoignez l'annuaire</h2>
+    <p>Présentez votre savoir-faire à la communauté.</p>
+  </div>
+  <div class="registration">
+    <div class="notice">
+      <strong>Version de démonstration :</strong>
+      le formulaire peut être rempli, mais aucune candidature
+      ni photo n'est encore envoyée ou enregistrée.
+    </div>
 
-<label for="metier">Métier</label>
-<select id="metier" required>
-<option value="">Choisir un métier</option>
-<option value="Autre">Autre (préciser)</option>
-</select>
-<label for="autreMetier">Métier non trouvé ?</label>
-<input type="text" id="autreMetier" placeholder="Écrivez votre métier ici">
-<label for="localite">Localité</label>
-<input id="localite" required>
-<label for="photo">Photo de profil</label>
-<input type="file" id="photo" accept="image/*">
-<label for="telephone">Téléphone</label>
-<input id="telephone" type="tel">
-<label for="realisations">Photos de vos réalisations</label>
-<input type="file" id="realisations" accept="image/*" multiple>
-<label for="description">Présentation</label>
-<textarea id="description" rows="4"></textarea>
+    <div class="steps" aria-label="Étapes de l'inscription">
+      <div class="step active"><span class="bubble">1</span>Métier</div>
+      <div class="step"><span class="bubble">2</span>Coordonnées</div>
+      <div class="step"><span class="bubble">3</span>Services</div>
+      <div class="step"><span class="bubble">4</span>Photos</div>
+    </div>
 
-<button type="submit">
-Tester mon inscription
-</button>
-</form>
-<p id="message" role="status"></p>
+    <form id="formulaire">
+      <div class="page active">
+        <h3>Quel est votre métier ?</h3>
+        <p>Choisissez votre domaine d'activité.</p>
+        <div class="field">
+          <label for="metier">Votre métier *</label>
+          <select id="metier" required>
+            <option value="">Sélectionnez votre métier</option>
+          </select>
+        </div>
+        <div class="field" id="champAutre" hidden>
+          <label for="autreMetier">Précisez votre métier *</label>
+          <input id="autreMetier" maxlength="90"
+            placeholder="Ex. : Carreleur, photographe...">
+        </div>
+        <div class="field">
+          <label for="specialite">Spécialité (facultatif)</label>
+          <input id="specialite" maxlength="100"
+            placeholder="Ex. : Installation et dépannage">
+        </div>
+      </div>
+
+      <div class="page">
+        <h3>Vos coordonnées</h3>
+        <p>Ces informations permettront de vous contacter après publication.</p>
+        <div class="field">
+          <label for="nom">Nom complet *</label>
+          <input id="nom" autocomplete="name" required maxlength="100">
+        </div>
+        <div class="two">
+          <div class="field">
+            <label for="telephone">Téléphone *</label>
+            <input id="telephone" type="tel" autocomplete="tel"
+              required maxlength="30">
+          </div>
+          <div class="field">
+            <label for="whatsapp">Numéro WhatsApp</label>
+            <input id="whatsapp" type="tel" maxlength="30">
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Adresse courriel</label>
+          <input id="email" type="email" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="localite">Ville ou localité *</label>
+          <input id="localite" required maxlength="100"
+            placeholder="Ex. : Niagara, Conakry, Montréal...">
+        </div>
+      </div>
+
+      <div class="page">
+        <h3>Présentez votre activité</h3>
+        <p>Expliquez les services que vous proposez.</p>
+        <div class="field">
+          <label for="description">Présentation de vos services *</label>
+          <textarea id="description" rows="5" maxlength="1500"
+            required placeholder="Décrivez votre expérience, vos compétences et vos services..."></textarea>
+          <small>Maximum 1 500 caractères.</small>
+        </div>
+        <div class="field">
+          <label for="experience">Années d'expérience (facultatif)</label>
+          <input id="experience" type="number" min="0" max="80">
+        </div>
+      </div>
+
+      <div class="page">
+        <h3>Vos photos</h3>
+        <p>Présentez-vous et montrez quelques exemples de votre travail.</p>
+        <div class="field">
+          <label for="photo">Photo de profil</label>
+          <input id="photo" type="file"
+            accept="image/jpeg,image/png,image/webp">
+          <small>JPG, PNG ou WebP, 5 Mo maximum.</small>
+          <div id="previewProfil" class="preview"></div>
+        </div>
+        <div class="field">
+          <label for="realisations">Photos de vos réalisations</label>
+          <input id="realisations" type="file"
+            accept="image/jpeg,image/png,image/webp" multiple>
+          <small>Jusqu'à 4 photos, 5 Mo maximum chacune.</small>
+          <div id="previewRealisations" class="preview"></div>
+        </div>
+        <div class="field check">
+          <input id="accord" type="checkbox" required>
+          <label for="accord">
+            Je confirme l'exactitude de mes informations et j'accepte
+            la publication de mes coordonnées professionnelles et photos
+            après validation du bureau ARN.
+          </label>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn secondary"
+          id="precedent" hidden>← Retour</button>
+        <span></span>
+        <button type="button" class="btn"
+          id="suivant">Continuer →</button>
+        <button type="submit" class="btn"
+          id="envoyer" hidden>ENVOYER MA CANDIDATURE</button>
+      </div>
+      <div id="message" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
 </section>
 </main>
 
 <footer>
-ARN-Annuaire<br>
-Association des Ressortissants de Niagara
+  <strong>ARN-Annuaire — Les fils de Niagara</strong>
+  <p>Association des Ressortissants de Niagara</p>
+  <p>Valorisons nos talents. Renforçons notre communauté.</p>
 </footer>
 
 <script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+
 const metiers = [
-  "Plomberie",
-  "Électricité",
-  "Menuiserie",
-  "Commerce",
-  "Couture",
-  "Transport",
-  "Maçonnerie",
-  "Mécanique",
-  "Agriculture",
-  "Informatique",
-  "Enseignement",
-  "Santé"
+  ["🔧","Plomberie"],
+  ["⚡","Électricité"],
+  ["🪚","Menuiserie"],
+  ["🛍️","Commerce"],
+  ["🧵","Couture"],
+  ["🚕","Transport"],
+  ["🧱","Maçonnerie"],
+  ["🚗","Mécanique"],
+  ["🌾","Agriculture"],
+  ["💻","Informatique"],
+  ["📚","Enseignement"],
+  ["🏥","Santé"],
+  ["✂️","Coiffure"],
+  ["🍽️","Restauration"],
+  ["📸","Photographie"],
+  ["🎨","Peinture"],
+  ["🔩","Soudure"],
+  ["🏠","Immobilier"],
+  ["📊","Comptabilité"],
+  ["⚖️","Droit et conseil"],
+  ["🧹","Entretien et nettoyage"],
+  ["🛠️","Réparation"],
+  ["💄","Beauté et esthétique"],
+  ["📦","Logistique"]
 ];
 
-const resultats = document.getElementById("resultats");
-const select = document.getElementById("metier");
-
-metiers.forEach(nom => {
+metiers.forEach(([icone,nom]) => {
   const option = document.createElement("option");
   option.value = nom;
-  option.textContent = nom;
-  select.appendChild(option);
+  option.textContent = icone + " " + nom;
+  $("metier").append(option);
 });
 
-function rechercher() {
-  const recherche = document
-    .getElementById("recherche")
-    .value.toLowerCase();
+const optionAutre = document.createElement("option");
+optionAutre.value = "Autre";
+optionAutre.textContent = "➕ Autre métier (préciser)";
+$("metier").append(optionAutre);
 
-  resultats.replaceChildren();
-  let total = 0;
-
-  metiers.forEach(nom => {
-    if (nom.toLowerCase().includes(recherche)) {
-      const carte = document.createElement("div");
-      carte.className = "card";
-      carte.textContent = nom;
-      resultats.appendChild(carte);
-      total++;
-    }
-  });
-
-  document.getElementById("aucun").hidden =
-    total !== 0;
+function normaliser(texte) {
+  return texte.normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .toLowerCase();
 }
 
-document.getElementById("formulaire")
-  .addEventListener("submit", function(e) {
-    e.preventDefault();
-    document.getElementById("message").textContent =
-      "Formulaire testé avec succès. " +
-      "Aucune inscription n'a été enregistrée.";
+function afficherCategories() {
+  const recherche = normaliser($("recherche").value.trim());
+  $("categories").replaceChildren();
+  let total = 0;
+
+  metiers.forEach(([icone,nom]) => {
+    if (!normaliser(nom).includes(recherche)) return;
+
+    const carte = document.createElement("button");
+    carte.type = "button";
+    carte.className = "category";
+
+    const symbole = document.createElement("span");
+    symbole.textContent = icone;
+
+    const titre = document.createElement("strong");
+    titre.textContent = nom;
+
+    const aide = document.createElement("small");
+    aide.textContent = "Choisir ce métier";
+
+    carte.append(symbole,titre,aide);
+
+    carte.addEventListener("click", () => {
+      $("metier").value = nom;
+      afficherAutre();
+      $("inscription").scrollIntoView({behavior:"smooth"});
+    });
+
+    $("categories").append(carte);
+    total++;
   });
 
-rechercher();
+  $("aucun").hidden = total > 0;
+}
+
+$("recherche").addEventListener("input",afficherCategories);
+
+function afficherAutre() {
+  const visible = $("metier").value === "Autre";
+  $("champAutre").hidden = !visible;
+  $("autreMetier").required = visible;
+  if (!visible) $("autreMetier").value = "";
+}
+
+$("metier").addEventListener("change",afficherAutre);
+
+const pages = [...document.querySelectorAll(".page")];
+const etapes = [...document.querySelectorAll(".step")];
+let etape = 0;
+
+function actualiser() {
+  pages.forEach((page,index) => {
+    page.classList.toggle("active",index === etape);
+  });
+
+  etapes.forEach((element,index) => {
+    element.classList.toggle("active",index === etape);
+    element.classList.toggle("done",index < etape);
+  });
+
+  $("precedent").hidden = etape === 0;
+  $("suivant").hidden = etape === pages.length - 1;
+  $("envoyer").hidden = etape !== pages.length - 1;
+  $("message").replaceChildren();
+}
+
+function valider() {
+  const champs = pages[etape].querySelectorAll(
+    "input,select,textarea"
+  );
+  for (const champ of champs) {
+    if (!champ.checkValidity()) {
+      champ.reportValidity();
+      return false;
+    }
+  }
+  return true;
+}
+
+$("suivant").addEventListener("click",() => {
+  if (valider() && etape < pages.length - 1) {
+    etape++;
+    actualiser();
+  }
+});
+
+$("precedent").addEventListener("click",() => {
+  if (etape > 0) {
+    etape--;
+    actualiser();
+  }
+});
+
+const photos = [];
+
+function apercu(inputId,previewId,maximum) {
+  $(inputId).addEventListener("change",() => {
+    const input = $(inputId);
+    const preview = $(previewId);
+    const fichiers = [...input.files];
+
+    preview.replaceChildren();
+
+    if (
+      fichiers.length > maximum ||
+      fichiers.some(fichier =>
+        !["image/jpeg","image/png","image/webp"].includes(fichier.type) ||
+        fichier.size > 5 * 1024 * 1024
+      )
+    ) {
+      alert(
+        "Choisissez au maximum " + maximum +
+        " photo(s) JPG, PNG ou WebP de 5 Mo chacune."
+      );
+      input.value = "";
+      return;
+    }
+
+    fichiers.forEach(fichier => {
+      const url = URL.createObjectURL(fichier);
+      photos.push(url);
+
+      const image = document.createElement("img");
+      image.src = url;
+      image.alt = "Aperçu de " + fichier.name;
+      preview.append(image);
+    });
+  });
+}
+
+apercu("photo","previewProfil",1);
+apercu("realisations","previewRealisations",4);
+
+$("formulaire").addEventListener("submit",event => {
+  event.preventDefault();
+  if (!valider()) return;
+
+  const message = $("message");
+  message.className = "notice";
+  message.replaceChildren();
+
+  const titre = document.createElement("strong");
+  titre.textContent =
+    "Formulaire rempli avec succès (démonstration).";
+
+  const detail = document.createElement("p");
+  detail.textContent =
+    "Le bouton « ENVOYER MA CANDIDATURE » est prêt visuellement, " +
+    "mais aucune candidature ni photo n'a été envoyée ou enregistrée. " +
+    "Nous devons d'abord connecter un service sécurisé pour recevoir " +
+    "les demandes du bureau ARN.";
+
+  message.append(titre,detail);
+  message.scrollIntoView({behavior:"smooth",block:"center"});
+});
+
+window.addEventListener("pagehide",() => {
+  photos.forEach(url => URL.revokeObjectURL(url));
+});
+
+afficherCategories();
+actualiser();
 </script>
 </body>
 </html>
