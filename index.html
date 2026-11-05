@@ -691,24 +691,52 @@ function apercu(inputId,previewId,maximum) {
 apercu("photo","previewProfil",1);
 apercu("realisations","previewRealisations",4);
 
-$("formulaire").addEventListener("submit",event => {
+$("formulaire").addEventListener("submit",async event => {
+  
   event.preventDefault();
   if (!valider()) return;
+const candidature = {
+  nom_complet: $("nom").value.trim(),
+  telephone: $("telephone").value.trim(),
+  whatsapp: $("whatsapp").value.trim(),
+  email: $("email").value.trim(),
+  ville_actuelle: $("localite").value.trim(),
+  metier: $("metier").value === "Autre"
+    ? $("autreMetier").value.trim()
+    : $("metier").value,
+  description: $("description").value.trim(),
+  experience: $("experience").value || null,
+  statut: "en_attente"
+};
+  const reponse = await fetch(
+  SUPABASE_URL + "/rest/v1/candidatures",
+  {
+    method: "POST",
+    headers: {
+      "apikey": SUPABASE_KEY,
+      "Content-Type": "application/json",
+      "Prefer": "return=minimal"
+    },
+    body: JSON.stringify(candidature)
+  }
+);
 
+if (!reponse.ok) {
+  const erreur = await reponse.text();
+  alert("Envoi impossible : " + erreur);
+  return;
+}
   const message = $("message");
   message.className = "notice";
   message.replaceChildren();
 
   const titre = document.createElement("strong");
   titre.textContent =
-    "Formulaire rempli avec succès (démonstration).";
+  "Votre candidature a été envoyée avec succès !";
 
   const detail = document.createElement("p");
   detail.textContent =
-    "Le bouton « ENVOYER MA CANDIDATURE » est prêt visuellement, " +
-    "mais aucune candidature ni photo n'a été envoyée ou enregistrée. " +
-    "Nous devons d'abord connecter un service sécurisé pour recevoir " +
-    "les demandes du bureau ARN.";
+  "Votre candidature a été reçue et sera examinée par le bureau ARN avant sa publication.";
 
   message.append(titre,detail);
   message.scrollIntoView({behavior:"smooth",block:"center"});
