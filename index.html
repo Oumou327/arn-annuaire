@@ -23,7 +23,7 @@
 const SUPABASE_URL='https://nelyhrbkitiqdlwmeeod.supabase.co';
 const SUPABASE_KEY='sb_publishable_7uYxOCWX6q69RnaT2a5zKw_QZx1Ms2q';
 const $=id=>document.getElementById(id);
-const client=window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+const client=window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storageKey:'arn-public-auth-v1'}});
 const metiers=['Plomberie','Électricité','Menuiserie','Commerce','Couture','Transport','Maçonnerie','Mécanique','Agriculture','Informatique','Enseignement','Santé','Coiffure','Restauration','Photographie','Peinture','Soudure','Immobilier','Comptabilité','Droit et conseil','Entretien et nettoyage','Réparation','Beauté et esthétique','Logistique','Autre'];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();

@@ -10,7 +10,7 @@ const SUPABASE_KEY='sb_publishable_7uYxOCWX6q69RnaT2a5zKw_QZx1Ms2q';
 const $=id=>document.getElementById(id);
 const setupType=new URLSearchParams(window.location?.hash?.slice(1)||'').get('type');
 let passwordSetupRequested=['invite','recovery'].includes(setupType);
-const client=window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storageKey:'arn-admin-auth-v1'}});
+const client=window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const notify=(id,message,error=false)=>{const el=$(id);el.textContent=message;el.className=error?'notice error':'notice';};
 async function adminCheck(){if(!client)return;const {data:{user}}=await client.auth.getUser();if(!user||user.is_anonymous){$('passwordSetup').hidden=true;$('adminPanel').hidden=true;$('listeAdmin').replaceChildren();$('authPanel').hidden=false;return}const {data,error}=await client.from('arn_administrateurs').select('user_id').eq('user_id',user.id).maybeSingle();if(error||!data){$('passwordSetup').hidden=!passwordSetupRequested;$('adminPanel').hidden=true;$('authPanel').hidden=false;notify('authMessage','Ce compte ne possède pas les droits administrateur.',true);return}$('passwordSetup').hidden=!passwordSetupRequested;$('adminPanel').hidden=passwordSetupRequested;$('authPanel').hidden=true;if(!passwordSetupRequested)await chargerAdmin()}
