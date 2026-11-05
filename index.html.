@@ -336,6 +336,7 @@ footer p {color:#cde5d6;font-size:13px}
         aria-label="Rechercher un métier">
     </div>
     <div class="grid" id="categories"></div>
+    <div id="professionnels" class="grid"></div>
     <p id="aucun" class="notice" hidden>
       Aucun métier trouvé.
     </p>
@@ -592,7 +593,49 @@ function afficherCategories() {
 
   $("aucun").hidden = total > 0;
 }
+async function afficherProfessionnels() {
+  const zone = $("professionnels");
+  if (!zone) return;
 
+  zone.replaceChildren();
+
+  try {
+    const reponse = await fetch(
+      SUPABASE_URL + "/rest/v1/candidatures?statut=eq.approuve&select=nom_complet,metier,telephone,ville_actuelle",
+      {
+        headers: {
+          apikey: SUPABASE_KEY
+        }
+      }
+    );
+
+    if (!reponse.ok) {
+      throw new Error("Chargement impossible");
+    }
+
+    const professionnels = await reponse.json();
+
+    professionnels.forEach(personne => {
+      const carte = document.createElement("article");
+      carte.className = "feature";
+
+      const nom = document.createElement("h3");
+      nom.textContent = personne.nom_complet || "Professionnel";
+
+      const metier = document.createElement("p");
+      metier.textContent = personne.metier || "";
+
+      const ville = document.createElement("p");
+      ville.textContent = personne.ville_actuelle || "";
+
+      carte.append(nom, metier, ville);
+      zone.append(carte);
+    });
+
+  } catch (erreur) {
+    console.error("Erreur de chargement :", erreur);
+  }
+}
 $("recherche").addEventListener("input",afficherCategories);
 
 function afficherAutre() {
@@ -747,6 +790,7 @@ window.addEventListener("pagehide",() => {
 });
 
 afficherCategories();
+  afficherProfessionnels();
 actualiser();
 </script>
 </body>
