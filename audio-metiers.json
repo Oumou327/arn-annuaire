@@ -1,0 +1,127 @@
+[
+  {
+    "metier": "Tous",
+    "texte": "Tous les métiers",
+    "fichier": "audio-metier-00.mp3"
+  },
+  {
+    "metier": "Plomberie",
+    "texte": "Plombier",
+    "fichier": "audio-metier-01.mp3"
+  },
+  {
+    "metier": "Électricité",
+    "texte": "Électricien",
+    "fichier": "audio-metier-02.mp3"
+  },
+  {
+    "metier": "Menuiserie",
+    "texte": "Menuisier",
+    "fichier": "audio-metier-03.mp3"
+  },
+  {
+    "metier": "Commerce",
+    "texte": "Commerce",
+    "fichier": "audio-metier-04.mp3"
+  },
+  {
+    "metier": "Couture",
+    "texte": "Couture",
+    "fichier": "audio-metier-05.mp3"
+  },
+  {
+    "metier": "Transport",
+    "texte": "Transport",
+    "fichier": "audio-metier-06.mp3"
+  },
+  {
+    "metier": "Maçonnerie",
+    "texte": "Maçon",
+    "fichier": "audio-metier-07.mp3"
+  },
+  {
+    "metier": "Mécanique",
+    "texte": "Mécanicien",
+    "fichier": "audio-metier-08.mp3"
+  },
+  {
+    "metier": "Agriculture",
+    "texte": "Agriculture",
+    "fichier": "audio-metier-09.mp3"
+  },
+  {
+    "metier": "Informatique",
+    "texte": "Informatique",
+    "fichier": "audio-metier-10.mp3"
+  },
+  {
+    "metier": "Enseignement",
+    "texte": "Enseignement",
+    "fichier": "audio-metier-11.mp3"
+  },
+  {
+    "metier": "Santé",
+    "texte": "Santé",
+    "fichier": "audio-metier-12.mp3"
+  },
+  {
+    "metier": "Coiffure",
+    "texte": "Coiffure",
+    "fichier": "audio-metier-13.mp3"
+  },
+  {
+    "metier": "Restauration",
+    "texte": "Cuisine",
+    "fichier": "audio-metier-14.mp3"
+  },
+  {
+    "metier": "Photographie",
+    "texte": "Photographe",
+    "fichier": "audio-metier-15.mp3"
+  },
+  {
+    "metier": "Peinture",
+    "texte": "Peintre",
+    "fichier": "audio-metier-16.mp3"
+  },
+  {
+    "metier": "Soudure",
+    "texte": "Soudeur",
+    "fichier": "audio-metier-17.mp3"
+  },
+  {
+    "metier": "Immobilier",
+    "texte": "Immobilier",
+    "fichier": "audio-metier-18.mp3"
+  },
+  {
+    "metier": "Comptabilité",
+    "texte": "Comptable",
+    "fichier": "audio-metier-19.mp3"
+  },
+  {
+    "metier": "Droit et conseil",
+    "texte": "Droit et conseil",
+    "fichier": "audio-metier-20.mp3"
+  },
+  {
+    "metier": "Entretien et nettoyage",
+    "texte": "Nettoyage",
+    "fichier": "audio-metier-21.mp3"
+  },
+  {
+    "metier": "Réparation",
+    "texte": "Réparation",
+    "fichier": "audio-metier-22.mp3"
+  },
+  {
+    "metier": "Beauté et esthétique",
+    "texte": "Beauté",
+    "fichier": "audio-metier-23.mp3"
+  },
+  {
+    "metier": "Logistique",
+    "texte": "Livraison",
+    "fichier": "audio-metier-24.mp3"
+  }
+]
