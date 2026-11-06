@@ -24,6 +24,6 @@
 
 Les migrations `arn_formateurs_avis_services` et `arn_avis_lien_identification` sont déjà appliquées au projet Supabase ARN. `formateurs-avis.sql` en conserve la source : ne pas l'exécuter à nouveau sur ce projet.
 
-Fichiers de cette extension : `index.html`, `admin.html`, `community.css`, `sw.js`. Les empreintes CSP des scripts intégrés ont été recalculées ; le cache du site passe à `arn-shell-v9`. L'administration n'est pas mise en cache hors ligne.
+Fichiers de cette extension : `index.html`, `admin.html`, `community.css`, `sw.js`. Les empreintes CSP des scripts intégrés ont été recalculées ; le cache du site passe à `arn-shell-v10`. L'administration n'est pas mise en cache hors ligne.
 
 Vérifications : tests de permissions anon/AAL1/AAL2, création et mise à jour d'un formateur, avis professionnel et formateur, moyenne de deux votes, lien consommé/expiré/révoqué, cascade de suppression, filtres par métier et alias, échappement HTML, onglets administrateur, labels et identifiants uniques. Les données de test SQL ont été annulées par ROLLBACK.
